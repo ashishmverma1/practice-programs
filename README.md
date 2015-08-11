@@ -1,6 +1,4 @@
-AlgorithmicPracticeCodes
-========================
+Practice Programs
+=================
 
-This repository contains all my programs which I did to practice algorithms.
-
-**Caution** : Beware of sick variable names. :)
+This repository contains some of my data-structures and algorithms practice programs.
