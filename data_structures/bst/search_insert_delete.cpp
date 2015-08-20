@@ -1,6 +1,6 @@
 /*
  * Author:		Ashish Verma
- * Title:		bst search and insert
+ * Title:		bst search, insert, delete
  *
  */
 
@@ -81,6 +81,49 @@ bool search(Node *root, int val) {
 	return false;
 }
 
+Node *getMinValueNode(Node *root) {
+	while (root->left != NULL) {
+		root = root->left;
+	}
+	return root;
+}
+
+Node *deleteNode(Node *root, int val) {
+	if (root == NULL) {
+		return NULL;
+	}
+	if (root->data == val) {
+		// both are NULL
+		if (root->left == NULL && root->right == NULL) {
+			delete root;
+			return NULL;
+		}
+
+		// either of them are NULL
+		if (root->left == NULL) {
+			Node *temp = root->right;
+			delete root;
+			return temp;
+		}
+		if (root->right == NULL) {
+			Node *temp = root->left;
+			delete root;
+			return temp;
+		}
+
+		// none of them are NULL
+		Node *temp = getMinValueNode(root->right);
+		root->data = temp->data;
+		root->right = deleteNode(root->right, temp->data);
+
+	} else if (root->data > val) {
+		root->left = deleteNode(root->left, val);
+	} else {
+		root->right = deleteNode(root->right, val);
+	}
+	return root;
+}
+
 int main() {
 
 	Node *root = NULL;
@@ -96,8 +139,8 @@ int main() {
 
 	inorder(root);
 	cout << endl;
-
-	cout << search(root, 9);
+	deleteNode(root, 14);
+	inorder(root);
 
 	return 0;
 }
