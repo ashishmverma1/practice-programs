@@ -22,14 +22,21 @@
 
 using namespace std;
 
+int dp[10000] = { 0 };
+
 int maxSum(int ar[], int n, int i = 0) {
 	if (i >= n) {
 		return 0;
 	}
+	if (dp[i]) {
+		return dp[i];
+	}
+
 	int including, excluding;
 	including = ar[i] + maxSum(ar, n, i + 2);
 	excluding = maxSum(ar, n, i + 1);
-	return max(including, excluding);
+	dp[i] = max(including, excluding);
+	return dp[i];
 }
 
 int main() {
