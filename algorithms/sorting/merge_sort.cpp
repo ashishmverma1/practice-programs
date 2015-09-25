@@ -1,7 +1,6 @@
 /*
  * Author:		Ashish Verma
- * Title:		inversion count - swaps needed to sort an array
- * 				nlog(n) - modified merge sort
+ * Title:			merge sort
  *
  */
 
